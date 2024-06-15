@@ -1,11 +1,15 @@
 # Background Removal in the Browser
 
+### 🚨 We are hiring 🚨
+
+We are always looking for great people at IMG.LY. If you are working with our background removal library you might be a perfect fit! **Apply now at [IMG.LY Careers](https://img.ly/company/careers/?utm_source=github&utm_medium=readme&utm_campaign=background-removal-js)**
+
 <p align="center">
-<img src="https://img.ly/showcases/cesdk/web/s/case-thumbnail/background-removal/background-removal-0.png?utm_source=github&utm_medium=project&utm_campaign=vectorizer" alt="background removal js showcase" />
+<img src="https://img.ly/showcases/cesdk/web/s/case-thumbnail/background-removal/background-removal-0.png?utm_source=github&utm_medium=project&utm_campaign=background-removal-js" alt="background removal js showcase" />
 </p>
 
 Remove backgrounds from images directly in the browser environment with ease and no additional costs or privacy concerns.
-Explore an [interactive demo](https://img.ly/showcases/cesdk/web/background-removal/web?utm_source=github&utm_medium=project&utm_campaign=vectorizer).
+Explore an [interactive demo](https://img.ly/showcases/cesdk/web/background-removal/web?utm_source=github&utm_medium=project&utm_campaign=background-removal-js).
 
 ## News
 
@@ -21,7 +25,7 @@ The key features of `@imgly/background-removal` are:
 
 - **Data Protection**: As `@imgly/background-removal` runs entirely in the browser, users can have peace of mind knowing that their images and sensitive information remain secure within their own devices. With no data transfers to external servers, data privacy concerns are effectively mitigated.
 
-- **Seamless Integration with IMG.LY's CE.SDK**: `@imgly/background-removal` provides seamless integration with [IMG.LY's CE.SDK](https://img.ly/products/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=vectorizer), allowing developers to easily incorporate powerful in-browser image matting and background removal capabilities into their projects.
+- **Seamless Integration with IMG.LY's CE.SDK**: `@imgly/background-removal` provides seamless integration with [IMG.LY's CE.SDK](https://img.ly/products/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=background-removal-js), allowing developers to easily incorporate powerful in-browser image matting and background removal capabilities into their projects.
 
 The Neural Network ([ONNX model](https://onnx.ai/)) and WASM files used by `@imgly/background-removal` are hosted by [IMG.LY](https://img.ly/) by default. See the section Custom Asset Serving if you want to host them on your own servers.
 
@@ -58,6 +62,7 @@ The library does not need any configuration to get started. However, there are o
 type Config = {
   publicPath: string; // The public path used for model and wasm files. Default: 'https://staticimgly.com/${PACKAGE_NAME}-data/${PACKAGE_VERSION}/dist/'
   debug: bool; // enable or disable useful console.log outputs
+  device: 'cpu' | 'gpu'; // choose the execution device. gpu will use webgpu if available
   proxyToWorker: bool; // Whether to proxy the calculations to a web worker. (Default true)
   model: 'small' | 'medium'; // The model to use. (Default "medium")
   output: {
@@ -112,12 +117,11 @@ The performance is largely dependent on the feature set available. Most prominen
 
 ### Custom Asset Serving
 
-The wasm and onnx neural networks are hosted by IMG.LY by default. For production use, we advise you to host them yourself. Therefore, copy all .wasm and .onnx files to your public path `$PUBLIC_PATH` and reconfigure the library.
+The wasm and onnx neural networks are hosted by IMG.LY by default. For production use, we advise you to host them yourself:
 
-```shell
-npm i @imgly/background-removal-data
-cp node_modules/@imgly/background-removal-data/dist/* $PUBLIC_PATH
-```
+- Download the following package with the package version that matches your `@imgly/background-removal` version from the IMG.LY CDN and decompress it. Note that you need to replace `YOUR_PACKAGE_VERSION` with the actual version of the package you are using. The URL is
+  `https://staticimgly.com/@imgly/background-removal-data/YOUR_PACKAGE_VERSION/package.tgz`.
+- Move the content of the `package/dist` folder to be served by your web server. This often is the `/public` folder.
 
 ```typescript
 import imglyRemoveBackground, {Config} from "@imgly/background-removal"
@@ -182,4 +186,4 @@ The software is free for use under the AGPL License. Please contact [support@img
 ## Authors & Contributors
 
 This library is made by IMG.LY shipping the world's premier SDKs for building creative applications.
-Start your trial of the [CreativeEditor SDK](https://img.ly/products/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=vectorizer), [PhotoEditor SDK](https://img.ly/products/photo-sdk?utm_source=github&utm_medium=project&utm_campaign=vectorizer) & [VideoEditor SDK](https://img.ly/products/video-sdk?utm_source=github&utm_medium=project&utm_campaign=vectorizer).
+Start your trial of the [CreativeEditor SDK](https://img.ly/products/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=background-removal-js), [PhotoEditor SDK](https://img.ly/products/photo-sdk?utm_source=github&utm_medium=project&utm_campaign=background-removal-js) & [VideoEditor SDK](https://img.ly/products/video-sdk?utm_source=github&utm_medium=project&utm_campaign=background-removal-js).
