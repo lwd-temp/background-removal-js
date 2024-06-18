@@ -66,7 +66,7 @@
     "@types/ndarray": "~1.0.14",
     "lodash": "~4.17.21",
     "ndarray": "~1.0.19",
-    "zod": "~3.21.4"
+    "zod": "~3.22.3"
   },
   "devDependencies": {
     "assert": "~2.0.0",
